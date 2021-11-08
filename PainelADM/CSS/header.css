@@ -1,0 +1,23 @@
+
+.flex-dashboard header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+    background-color: #fff;
+    padding: 10px 30px;
+    border-right: #ccc;
+    border-bottom: 1px solid rgba(128,128,128, 0.3);
+}
+
+.flex-dashboard header a{
+    text-decoration: none;
+    color: #363636;
+}
+
+.flex-dashboard header a > svg {
+    color: #701818;
+    font-size: 24px;
+}
+
