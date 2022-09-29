@@ -6,7 +6,7 @@
             <div class="row py-2">
                 <div class="col-12 col-md-4 text-center text-md-left">
                     &copy;<span id="year"></span>MeatPrime<br>Valinhos/SP<br>
-                    CPNJ 03.462.477/0001-87
+                    CPNJ: 03.462.477/0001-87
                 </div>
                 <div class="col-12 col-md-4 text-center">
                     <a href="../TermosGerais/privacidade.php" class="text-decoration-none text-dark">Política de
