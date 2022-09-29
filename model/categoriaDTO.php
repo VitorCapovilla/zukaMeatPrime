@@ -14,7 +14,7 @@
         }
 
         public function set_titulo($titulo){
-            $this->titulo=$titulo;
+            $this->titulo = $titulo;
         }
 
         public function get_titulo(){

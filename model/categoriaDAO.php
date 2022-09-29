@@ -18,8 +18,8 @@
         }
 
         //Altera Categoria
-        function alterar($objCategoria){
-            $meu_comando = $this->con->query("UPDATE categoria SET titulo = '" . $objCategoria->get_titulo() . "' WHERE (codigo = " . $objCategoria->get_codigo(). ")");
+        public function alterar($objCategoria){
+            $meu_comando = $this->con->query("UPDATE CATEGORIA SET TITULO = '" . $objCategoria->get_titulo() . "' WHERE (CODIGO = " . $objCategoria->get_codigo(). ")");
             
             if ($meu_comando->rowCount() > 0){
                 return true;
@@ -30,7 +30,7 @@
         }
 
         //Excluir Categoria
-        function excluir($codigo){
+        public function excluir($codigo){
             $meu_comando = $this->con->query("DELETE FROM categoria WHERE (codigo = '" . $codigo . "')");
     
             if ($meu_comando->rowCount() > 0){
@@ -42,12 +42,12 @@
         }
 
         //Obter TODOS
-        function obter_todos(){
+        public function obter_todos(){
             $meu_resultado = $this->con->query("SELECT codigo, titulo, autor, datahora FROM categoria");
             $categorias = [];
 
             while($linha = $meu_resultado->fetch(PDO::FETCH_ASSOC)){
-                $objCategoria = new Categoria();
+                $objCategoria = new categoriaDTO();
                 $objCategoria->set_codigo($linha['codigo']);
                 $objCategoria->set_titulo($linha['titulo']);
                 $objCategoria->set_autor($linha['autor']);
@@ -60,11 +60,11 @@
         }
 
         //Obtem codigo
-        function obter($codigo){
+        public function obter($codigo){
             $meu_comando =$this->con->query("SELECT codigo, titulo FROM categoria WHERE (codigo = " . $codigo . ");");
             $linha = $meu_comando->fetch(PDO::FETCH_ASSOC);
     
-            $objCategorias = new Categoria();
+            $objCategorias = new categoriaDTO();
             $objCategorias->set_codigo($linha['codigo']);
             $objCategorias->set_titulo($linha['titulo']);
     
