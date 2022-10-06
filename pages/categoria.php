@@ -1,9 +1,8 @@
 <?php 
+  require_once("../model/categoriaDAO.php");
   require_once("../include/functions.php");
   require_once("../include/sessions.php");
-  require_once("../include/datetime.php");
-  require_once("../model/categoriaDTO.php");
-  require_once("../model/categoriaDAO.php"); 
+  require_once("../include/datetime.php"); 
 ?>
 
 <?php

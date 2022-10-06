@@ -1,6 +1,7 @@
 <?php
-    require_once('produtoDTO.php');
-    require_once('../db/bd_gerenciador.php');
+    require_once ('categoriaDAO.php');
+    require_once ('produtoDTO.php');
+    require_once ('../db/bd_gerenciador.php');
 
     class produtoDAO{
         private $con;
@@ -45,14 +46,19 @@
 
         // Obter Todos os Produtos
         public function obter_todos(){
-            $meu_resultado = $this->con->query("SELECT codigo, titulo, categoria, imagem, descricao, peso, preco, autor, datahora FROM produtos");
+            $meu_resultado = $this->con->query("SELECT prod.codigo, prod.titulo, ca.codigo as codigo_categoria, ca.titulo, prod.imagem, prod.descricao, 
+            prod.peso, prod.preco, prod.autor, prod.datahora FROM PRODUTOS as prod LEFT JOIN categoria as ca on ca.titulo = ca.codigo");
             $produtos = [];
 
             while($linha = $meu_resultado->fetch(PDO::FETCH_ASSOC)){
-                $objProduto = new Produto();
+                $objProduto = new produtoDTO();
                 $objProduto->set_codigo($linha['codigo']);
                 $objProduto->set_titulo($linha['titulo']);
-                $objProduto->set_categoria($linha['categoria']);
+                
+                $objProduto->set_categoria(new categoriaDTO());
+                $objProduto->get_categoria()->set_codigo($linha['codigo_categoria']);
+                $objProduto->get_categoria()->set_titulo($linha['ca.titulo']);
+                
                 $objProduto->set_imagem($linha['imagem']);
                 $objProduto->set_descricao($linha['descricao']);
                 $objProduto->set_peso($linha['peso']);
