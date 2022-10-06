@@ -22,9 +22,9 @@
 
         //Altera Categoria
         function alterar($objProdutos){
-            $meu_comando = $this->con->query("UPDATE produtos SET titulo = '" . $objProdutos->get_titulo() . "', categoria = '" . $objProdutos->get_categoria() ."', imagem = '". $objProdutos->get_imagem() . "', descricao = '". $objProdutos->get_descricao() . "', peso = '" . $objProdutos->get_peso() . "', preco= '". $objProdutos->get_preco() . "' WHERE (codigo = " . $objProdutos->get_codigo(). ")");
+            $meu_comando = $this->con->query("UPDATE PRODUTOS SET titulo = '" . $objProdutos->get_titulo() . "', categoria = '" . $objProdutos->get_categoria() ."', imagem = '". $objProdutos->get_imagem() . "', descricao = '". $objProdutos->get_descricao() . "', peso = '" . $objProdutos->get_peso() . "', preco= '". $objProdutos->get_preco() . "' WHERE (codigo = " . $objProdutos->get_codigo(). ")");
     
-            if ($meu_comando->rowCount() > 0){
+            if ($meu_comando->rowCount() > 0){ 
                 return true;
             }
             else{
