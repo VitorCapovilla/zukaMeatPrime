@@ -8,10 +8,10 @@ require_once("../model/categoriaDAO.php");
 require_once("../model/categoriaDTO.php");
 require_once("../model/produtoDAO.php");
 require_once("../model/produtoDTO.php");
-
 require_once("../include/functions.php"); 
 require_once("../include/sessions.php"); 
 require_once("../include/datetime.php"); 
+require_once("../include/links.html"); 
 
 require_once("../include/header.php");
 ?>
@@ -92,9 +92,9 @@ require_once("../include/header.php");
                         </button>
                         <ul class="dropdown-menu col-12 col-md-10" aria-labelledby="dropdownMenuButton1">
                             <?php
-                                foreach($lstCategorias as $objCategoria){
-                                    echo "<li class=\"dropdown-item\">" . $objCategoria->get_titulo() . "</li>";
-                                }
+                                // foreach($lstCategorias as $objCategoria){
+                                //     echo "<li class=\"dropdown-item\">" . $objCategoria->get_titulo() . "</li>";
+                                // }
                             ?>
                         </ul>
                     </div>
@@ -106,7 +106,7 @@ require_once("../include/header.php");
                 <div class="col-12 col-md-12">
                     <hr class="mt-2">
                 </div>
-                <?php foreach($lstProdutos as $objProduto){ echo'
+                <!-- <?php foreach($lstProdutos as $objProduto){ echo'
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch">
                         <div class="card text-center bg-light">
                             <img src="../Images/Produtos/Bovino/Alcatra.png" class="card-img-top">
@@ -134,7 +134,7 @@ require_once("../include/header.php");
                         </div>
                     </div>';
 
-                }?> 
+                }?>  -->
     <!--Fim Carrossel-->
 <!-- footer -->
 <?php require_once("../include/footer.php");

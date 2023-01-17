@@ -18,7 +18,7 @@ class GerenciadoraDeConexoes {
     	$username = 'root';
 		$password = '';
 		$host = 'localhost';
-		$db_name ='bd_meatprime';
+		$db_name ='ZukaMeatPrime';
 
 		$str_con = 'mysql:host=' . $host . ';dbname=' . $db_name;
     	
