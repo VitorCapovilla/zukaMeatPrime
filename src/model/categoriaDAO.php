@@ -9,67 +9,81 @@
             $this->con = GerenciadoraDeConexoes::obter_conexao();
         }
 
-        //Inserir
-        public function inserir($obj){
-            $meu_resultado = $this->con->query("INSERT INTO categoria(titulo, autor, datahora) VALUES ('" 
-                . $obj->get_titulo() . "', '" . $obj->get_autor() . "', '" . $obj->get_datahora() . "')");
+        //Inserir Categoria
+        public function inserir($ObjCategoria){
+            $meu_resultado = $this->con->query("INSERT INTO CATEGORIAS(CODIGO_AUTOR, NOME, DATA_CRIACAO, ATIVO) VALUES ('" 
+                . $ObjCategoria->get_codigo_autor() . "', '" . $ObjCategoria->get_nome() . "','".$ObjCategoria->get_data_criacao(). "','" . $ObjCategoria->get_ativo() . "')");
 
             return ($meu_resultado->rowCount() > 0);     
         }
 
         //Altera Categoria
-        public function alterar($objCategoria){
-            $meu_comando = $this->con->query("UPDATE CATEGORIA SET TITULO = '" . $objCategoria->get_titulo() . "' WHERE (CODIGO = " . $objCategoria->get_codigo(). ")");
+        public function alterar($ObjCategoria){
+            $sql = $this->con->query("UPDATE CATEGORIAS SET 
+                CODIGO_AUTOR = '" . $ObjCategoria->get_codigo_autor() . "',
+                NOME = '" . $ObjCategoria->get_nome() . "',
+                DATA_CRIACAO = '" . $ObjCategoria->get_data_criacao() . "',
+                ATIVO = '" . $ObjCategoria->get_ativo() . "'
+                WHERE (CODIGO = " . $ObjCategoria->get_codigo() . ")");
             
-            if ($meu_comando->rowCount() > 0){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return ($sql->rowCount() > 0);
         }
 
         //Excluir Categoria
         public function excluir($codigo){
-            $meu_comando = $this->con->query("DELETE FROM categoria WHERE (codigo = '" . $codigo . "')");
+            $meu_comando = $this->con->query("DELETE FROM CATEGORIAS WHERE (codigo = '" . $codigo . "')");
     
             if ($meu_comando->rowCount() > 0){
-                   return true;
-               }
-               else{
-                   return false;
-               }
+               return true;
+            }else{
+                return false;
+            }
         }
 
-        //Obter TODOS
-        public function obter_todos(){
-            $meu_resultado = $this->con->query("SELECT codigo, titulo, autor, datahora FROM categoria");
-            $categorias = [];
+        //Obter Codigo
+        public function obter($codigo){
+            $list = $this->obter_lista("(CODIGO = '" . $codigo . "')");
+            
+            if (count($list) == 0)
+                throw new Exception("Categoria não localizada!");
 
-            while($linha = $meu_resultado->fetch(PDO::FETCH_ASSOC)){
+            return $list[0];
+        }
+
+        //Obter todas as Categorias Ativadas
+        public function obter_todos_ativados(){
+            return $this->obter_lista("ativo = 1");
+        }
+
+        //Obter todas as Categorias Desativadas
+        public function obter_todos_desativados(){
+            return $this->obter_lista("ativo = 0");
+        }
+
+        //Metodo privado para obter todos os itens de uma tabela, modular
+        private function obter_lista($cond = ""){
+            $lista = [];
+    
+            $sql = "SELECT CODIGO, CODIGO_AUTOR, NOME, DATA_CRIACAO, ATIVO FROM CATEGORIAS ";
+            
+            if ($cond != "")
+                $sql = $sql . "WHERE (" . $cond . ")";
+    
+            $sql = $sql . " ORDER BY NOME";
+    
+            $meu_comando = $this->con->query($sql);
+    
+            while ($linha = $meu_comando->fetch(PDO::FETCH_ASSOC)){
                 $objCategoria = new categoriaDTO();
                 $objCategoria->set_codigo($linha['codigo']);
-                $objCategoria->set_titulo($linha['titulo']);
-                $objCategoria->set_autor($linha['autor']);
-                $objCategoria->set_datahora($linha['datahora']);
-
-                array_push($categorias, $objCategoria);
+                $objCategoria->set_codigo_autor($linha['CODIGO_AUTOR']);
+                $objCategoria->set_nome($linha['NOME']);
+                $objCategoria->set_data_criacao($linha['DATA_CRIACAO']);
+                $objCategoria->set_ativo($linha['ATIVO']);
+                
+                array_push($lista, $objCategoria);
             }
-
-            return $categorias;
+            return $lista;
         }
-
-        //Obtem codigo
-        public function obter($codigo){
-            $meu_comando =$this->con->query("SELECT codigo, titulo FROM categoria WHERE (codigo = " . $codigo . ");");
-            $linha = $meu_comando->fetch(PDO::FETCH_ASSOC);
-    
-            $objCategorias = new categoriaDTO();
-            $objCategorias->set_codigo($linha['codigo']);
-            $objCategorias->set_titulo($linha['titulo']);
-    
-            return $objCategorias;
-        }
-
     }
 ?>

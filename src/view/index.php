@@ -18,7 +18,7 @@ require_once("../include/header.php");
 
 <?php
     $objCategoriaDao = new categoriaDAO();
-    $lstCategorias = $objCategoriaDao->obter_todos();
+    $lstCategorias = $objCategoriaDao->obter_todos_ativados();
 
     $objProdutoDao = new produtoDAO();
     $lstProdutos = $objProdutoDao->obter_todos();
