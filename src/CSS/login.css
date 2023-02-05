@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.btn-primary{
+    background-color: #831D1C;
+    border: none;
+}
+
+.btn-primary:hover{
+    background-color: #a00d0a;
+}
+
+.login-card{
+    background-color: white !important;
+    height: 40vh;
+    width: 40vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+body{
+    background-color: #ebebeb;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid{
+    display: flex;
+    justify-content: center !important;
+}
+
+.moreOptions{
+    display: flex;
+}

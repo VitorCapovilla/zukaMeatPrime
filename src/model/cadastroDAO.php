@@ -9,10 +9,24 @@
             $this->con = GerenciadoraDeConexoes::obter_conexao();
         }
 
-        public function inserir($obj){
-            $meu_resultado = $this->con->query("INSERT INTO cliente(nome, sobrenome, datanascimento, cpf, telefone, email, senha) VALUES ('" . $obj->get_nome() . "', '" . $obj->get_sobrenome() . "', '" . $obj->get_datanasc() . "', '" . $obj->get_cpf() . "', '" . $obj->get_telefone() . "', '" . $obj->get_email() . "', '" . $obj->get_senha() . "')");
-            
-            return ($meu_resultado->rowCount() > 0);  
+        public function inserir($objUsuario){ 
+            $sql = $this->con->query("INSERT INTO USUARIOS (ENDERECO, CONTRATADO, NOME, SOBRENOME, USUARIO, CELULAR, EMAIL, SENHA, NIVEL, SALARIO, ATIVO, DATA_CONTRATACAO, DATA_NASCIMENTO, DATA_CADASTRO) VALUES (
+            '" . $objUsuario->get_endereco() . "',
+            '" . $objUsuario->get_contratado() . "',
+            '" . $objUsuario->get_nome() . "',
+            '" . $objUsuario->get_sobrenome() . "',
+            '" . $objUsuario->get_usuario() . "',
+            '" . $objUsuario->get_celular() . "',
+            '" . $objUsuario->get_email() . "',
+            '" . $objUsuario->get_senha() . "',
+            '" . $objUsuario->get_nivel() . "',
+            '" . $objUsuario->get_salario() . "',
+            '" . $objUsuario->get_ativo() . "',
+            '" . $objUsuario->get_data_contratacao() . "',
+            '" . $objUsuario->get_data_nascimento() . "',
+            '" . $objUsuario->get_data_cadastro() . "')");
+    
+            return ($sql->rowCount() > 0);
         }
 
         //Altera Cadastro
@@ -75,21 +89,6 @@
             $c->set_senha($linha['senha']);
     
             return $c;
-        }
-
-        public function login($email, $senha){
-            $meu_comando = $this->con->query('SELECT * FROM cliente where email = "' . $email . '" AND senha = "' . $senha .'"');
-            session_start();
-            if($meu_comando->rowCount() > 0){
-                $dados = $meu_comando->fetch();
-                
-                $_SESSION['loggedin'] = true;
-                $_SESSION['idusuario'] = $dados['codigo'];
-    
-                return true;
-            }else{
-                return false;
-            }
         }
     }
 ?>
