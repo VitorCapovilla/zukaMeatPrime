@@ -11,18 +11,37 @@
         }
 
         // Inserir Produto
-        public function inserir($obj){
-            $meu_resultado = $this->con->query("INSERT INTO produtos(titulo, categoria, imagem, descricao, peso, preco, autor, datahora) VALUES ('"
-             . $obj->get_titulo() . "', '" . $obj->get_categoria() . "', '" . $obj->get_imagem() . "', '"
-             . $obj->get_descricao() . "', '" . $obj->get_peso() . "', '" . $obj->get_preco() . "', '"
-             . $obj->get_autor() . "', '" . $obj->get_datahora() . "')");
+        public function inserir($objProdutos){
+            $meu_resultado = $this->con->query("INSERT INTO PRODUTOS(CODIGO_AUTOR, CODIGO_CATEGORIA, NOME, DESCRICAO, COD_BARRA, PESO, PRECO, ATIVO, IMAGEM, DATA_VALIDADE, DATA_CADASTRO) VALUES ('"
+            . $objProdutos->get_codigo_autor() . "', '"
+            . $objProdutos->get_codigo_categoria() . "', '"
+            . $objProdutos->get_nome() . "', '"
+            . $objProdutos->get_descricao() . "', '" 
+            . $objProdutos->get_peso() . "', '" 
+            . $objProdutos->get_preco() . "', '"
+            . $objProdutos->get_ativo() . "', '" 
+            . $objProdutos->get_imagem() . "', '" 
+            . $objProdutos->get_data_validade() . "', '" 
+            . $objProdutos->get_data_cadastro() . "')");
             
             return ($meu_resultado->rowCount() > 0);  
         }
 
-        //Altera Categoria
+        //Alterar Produto
         function alterar($objProdutos){
-            $meu_comando = $this->con->query("UPDATE PRODUTOS SET titulo = '" . $objProdutos->get_titulo() . "', categoria = '" . $objProdutos->get_categoria() ."', imagem = '". $objProdutos->get_imagem() . "', descricao = '". $objProdutos->get_descricao() . "', peso = '" . $objProdutos->get_peso() . "', preco= '". $objProdutos->get_preco() . "' WHERE (codigo = " . $objProdutos->get_codigo(). ")");
+            $meu_comando = $this->con->query("UPDATE PRODUTOS SET 
+            CODIGO_AUTOR    = '" . $objProdutos->get_codigo_autor() . "', 
+            CODIGO_CATEGORIA = '" . $objProdutos->get_codgio_categoria() ."', 
+            NOME    = '". $objProdutos->get_nome() . "', 
+            DESCRICAO = '". $objProdutos->get_descricao() . "', 
+            COD_BARRA      = '" . $objProdutos->get_cod_barra() . "', 
+            PESO     = '". $objProdutos->get_peso() . "',
+            PRECO     = '". $objProdutos->get_preco() . "', 
+            ATIVO     = '". $objProdutos->get_ativo() . "', 
+            IMAGEM     = '". $objProdutos->get_imagem() . "', 
+            DATA_VALIDADE     = '". $objProdutos->get_data_validade() . "', 
+            DATA_CADASTRO     = '". $objProdutos->get_data_cadastro() . "'
+            WHERE (codigo = " . $objProdutos->get_codigo(). ")");
     
             if ($meu_comando->rowCount() > 0){ 
                 return true;
@@ -32,9 +51,9 @@
             }
         }
 
-        //Excluir Categora
+        //Excluir Produto
         function excluir($codigo){
-            $meu_comando = $this->con->query("DELETE FROM produtos WHERE (codigo = '" . $codigo . "')");
+            $meu_comando = $this->con->query("DELETE FROM PRODUTOS WHERE (CODIGO = '" . $codigo . "')");
     
             if ($meu_comando->rowCount() > 0){
                    return true;
@@ -44,73 +63,33 @@
                }
         }
 
-        // Obter Todos os Produtos
-        public function obter_todos(){
-            $meu_resultado = $this->con->query("SELECT prod.codigo, prod.titulo, ca.codigo as codigo_categoria, ca.titulo, prod.imagem, prod.descricao, 
-            prod.peso, prod.preco, prod.autor, prod.datahora FROM PRODUTOS as prod LEFT JOIN categoria as ca on ca.titulo = ca.codigo");
-            $produtos = [];
-
-            while($linha = $meu_resultado->fetch(PDO::FETCH_ASSOC)){
-                $objProduto = new produtoDTO();
-                $objProduto->set_codigo($linha['codigo']);
-                $objProduto->set_titulo($linha['titulo']);
-                
-                $objProduto->set_categoria(new categoriaDTO());
-                $objProduto->get_categoria()->set_codigo($linha['codigo_categoria']);
-                $objProduto->get_categoria()->set_titulo($linha['ca.titulo']);
-                
-                $objProduto->set_imagem($linha['imagem']);
-                $objProduto->set_descricao($linha['descricao']);
-                $objProduto->set_peso($linha['peso']);
-                $objProduto->set_preco($linha['preco']);
-                $objProduto->set_autor($linha['autor']);
-                $objProduto->set_datahora($linha['datahora']);
-
-                array_push($produtos, $objProduto);
-            }
-
-            return $produtos;
-        }
-
-        // Obter Código
-        function obter($codigo){
-            $meu_comando =$this->con->query("SELECT codigo, titulo, categoria, imagem, descricao, peso, preco, autor, datahora FROM produtos WHERE (codigo = " . $codigo . ");");
-            $linha = $meu_comando->fetch(PDO::FETCH_ASSOC);
-    
-            $c = new Produto();
-            $c->set_codigo($linha['codigo']);
-            $c->set_titulo($linha['titulo']);
-            $c->set_categoria($linha['categoria']);
-            $c->set_imagem($linha['imagem']);
-            $c->set_descricao($linha['descricao']);
-            $c->set_peso($linha['peso']);
-            $c->set_preco($linha['preco']);
-            $c->set_autor($linha['autor']);
-            $c->set_datahora($linha['datahora']);
-    
-            return $c;
-        }
-
         function obter_por_nome($nome){
             $lista = [];
-            $meu_comando = $this->con->query("SELECT codigo, titulo, categoria, imagem, descricao, peso, preco, autor, datahora FROM produtos WHERE (titulo like '%" . $nome . "%');");
+            $meu_comando = $this->con->query("SELECT CODIGO, CODIGO_AUTOR, CODIGO_CATEGORIA, NOME, DESCRICAO, COD_BARRA, PESO, PRECO, ATIVO, IMAGEM, DATA_VALIDADE, DATA_CADASTRO FROM PRODUTOS WHERE (NOME like '%" . $nome . "%');");
      
             while ($linha = $meu_comando->fetch(PDO::FETCH_ASSOC)) {
-                $c = new Produto();
-                $c->set_codigo($linha['codigo']);
-                $c->set_titulo($linha['titulo']);
-                $c->set_categoria($linha['categoria']);
-                $c->set_imagem($linha['imagem']);
-                $c->set_descricao($linha['descricao']);
-                $c->set_peso($linha['peso']);
-                $c->set_preco($linha['preco']);
-                $c->set_autor($linha['autor']);
-                $c->set_datahora($linha['datahora']);
+                $objProduto = new produtoDTO();
+                $objProduto->set_codigo($linha['CODIGO']);
+                $objProduto->set_codigo_autor($linha['CODIGO_AUTOR']);
+                $objProduto->set_codigo_categoria($linha['CODIGO_CATEGORIA']);
+                $objProduto->set_nome($linha['NOME']);
+                $objProduto->set_descricao($linha['DESCRICAOS']);
+                $objProduto->set_cod_barra($linha['COD_BARRA']);
+                $objProduto->set_peso($linha['PESO']);
+                $objProduto->set_preco($linha['PRECO']);
+                $objProduto->set_ativo($linha['ATIVO']);
+                $objProduto->set_imagem($linha['IMAGEM']);
+                $objProduto->set_data_validade($linha['DATA_VALIDADE']);
+                $objProduto->set_data_cadastro($linha['DATA_CADASTRO']);
         
-                return $c;
+                return $objProduto;
             }
     
             return $lista;
+        }
+
+        public function obter_todos(){
+            return True;
         }
     }
 ?>

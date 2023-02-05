@@ -1,86 +1,112 @@
 <?php
     class produtoDTO{
         private $codigo;
-        private $titulo; 
-        private $categoria;
-        private $imagem;
+        private $codigo_autor;
+        private $codigo_categoria;
+        private $nome;
         private $descricao;
+        private $cod_barra;
         private $peso;
         private $preco;
-        private $autor;
-        private $datahora;
+        private $ativo;
+        private $imagem;
+        private $data_validade; /* **** */
+        private $data_cadastro;
 
-
-        function set_codigo($x){
-            $this->codigo = $x;
+        public function set_codigo($codigo){
+            $this->codigo = $codigo;
         }
 
-        function get_codigo(){
+        public function get_codigo(){
             return $this->codigo;
         }
 
-        function set_titulo($x){
-            $this->titulo = $x;
+        public function set_codigo_autor($codigo_autor){
+            $this->codigo_autor = $codigo_autor;
         }
 
-        function get_titulo(){
-            return $this->titulo;
+        public function get_codigo_autor(){
+            return $this->codigo_autor;
         }
 
-        function set_categoria($x){
-            $this->categoria=$x;
+        public function set_codigo_categoria($codigo_categoria){
+            $this->codigo_categoria = $codigo_categoria;
         }
 
-        function get_categoria(){
-            return $this->categoria;
+        public function get_codigo_categoria(){
+            return $this->codigo_categoria;
         }
 
-        function set_imagem($x){
-            $this->imagem = $x;
+        public function set_nome($nome){
+            $this->nome = $nome;
         }
 
-        function get_imagem(){
-            return $this->imagem;
+        public function get_nome(){
+            return $this->nome;
         }
 
-        function set_descricao($x){
-            $this->descricao=$x;
+        public function set_descricao($descricao){
+            $this->descricao = $descricao;
         }
 
-        function get_descricao(){
+        public function get_descricao(){
             return $this->descricao;
         }
 
-        function set_peso($x){
-            $this->peso = $x;
+        public function set_cod_barra($cod_barra){
+            $this->cod_barra = $cod_barra;
         }
 
-        function get_peso(){
+        public function get_cod_barra(){
+            return $this->cod_barra;
+        }
+
+        public function set_peso($peso){
+            $this->peso = $peso;
+        }
+
+        public function get_peso(){
             return $this->peso;
         }
 
-        function set_preco($x){
-            $this->preco = $x;
+        public function set_preco($preco){
+            $this->preco = $preco;
         }
 
-        function get_preco(){
+        public function get_preco(){
             return $this->preco;
         }
 
-        function set_autor($x){
-            $this->autor=$x;
+        public function set_ativo($ativo){
+            $this->ativo = $ativo;
         }
-        
-        function get_autor(){
-            return $this->autor;
+
+        public function get_ativo(){
+            return $this->ativo;
         }
-        
-        function set_datahora($x){
-            $this->datahora = $x;
+
+        public function set_imagem($imagem){
+            $this->imagem = $imagem;
         }
-        
-        function get_datahora(){
-            return $this->datahora;
+
+        public function get_imagem(){
+            return $this->imagem;
+        }
+
+        public function set_data_validade($data_validade){
+            $this->data_validade = $data_validade;
+        }
+
+        public function get_data_validade(){
+            return $this->data_validade;
+        }
+
+        public function set_data_cadastro($data_cadastro){
+            $this->data_cadastro = $data_cadastro;
+        }
+
+        public function get_data_cadastro(){
+            return $this->data_cadastro;
         }
     }
 ?>

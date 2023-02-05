@@ -20,3 +20,28 @@ li:hover>.ul.dropdown-menu{
     margin-top: -5px;
     left: 100%;
 }
+
+
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: var(--bold);
+	src: url(../font/material-icon-fonts.woff2) format('woff2');
+}
+
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 20px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+}

@@ -1,14 +1,14 @@
 <?php
 
 	class loginDTO {
-		private $username;
+		private $email;
 		private $password;
 
-		public function get_username() {
+		public function get_email() {
 			return $this->username;
 		}
 
-		public function set_username($x) {
+		public function set_email($x) {
 			$this->username = $x;
 		}
 

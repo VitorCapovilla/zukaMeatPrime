@@ -1,4 +1,8 @@
 <?php
+	//Niveis:
+	// 0 = Cliente
+	// 1 = Administrator
+	// 2 = Gerente
 	require_once("../model/SessionDTO.php");
 	require_once("../model/LoginDTO.php");
 	require_once("../model/LoginDAO.php");
@@ -13,7 +17,7 @@
 		public function autenticar($login) {
 			$objSession = $this->dao->authenticate($login);
 
-			if ($objSession->get_codigo() != -1) {
+			if ($objSession->get_codigo() >= 0) {
 				$this->iniciar_sessao($objSession);
 				return true;
 			}
@@ -24,20 +28,22 @@
 		private function iniciar_sessao($objSession) {
 			session_start();
 
-			$_SESSION['codigoSessaoInvoice'] = $objSession->get_codigo();
-			$_SESSION['nivelSessaoInvoice'] = $objSession->get_nivel();
-			$_SESSION['usernameSessaoInvoice'] = $objSession->get_username();
+			$_SESSION['codigoSessaoZukaMeatPrime'] = $objSession->get_codigo();
+			$_SESSION['nomeSessaoZukaMeatPrime'] = $objSession->get_nome();
+			$_SESSION['nivelSessaoZukaMeatPrime'] = $objSession->get_nivel();
+			$_SESSION['usernameSessaoZukaMeatPrime'] = $objSession->get_email();
 		}
 
 		public function obter_sessao() {
-			if (!isset($_SESSION)) {
-				session_start();
+			if (isset($_SESSION)) {
+				return new sessionDTO($_SESSION['codigoSessaoZukaMeatPrime'], $_SESSION['nivelSessaoZukaMeatPrime'], $_SESSION['usernameSessaoZukaMeatPrime'], $_SESSION['nomeSessaoZukaMeatPrime']);
 			}
+		}
 
-			if (!$this->verificar_sessao())
-				return;
-
-			return new sessionDTO($_SESSION['codigoSessaoInvoice'], $_SESSION['nivelSessaoInvoice'], $_SESSION['usernameSessaoInvoice']);
+		public function nao_logado($logado){
+			if($logado == 0){
+				return new sessionDTO($_SESSION['codigoSessaoZukaMeatPrime'] = null, $_SESSION['nivelSessaoZukaMeatPrime'] = null, $_SESSION['usernameSessaoZukaMeatPrime'] = null, $_SESSION['nomeSessaoZukaMeatPrime'] = null);
+			}
 		}
 
 		public function ecerrar_sessao() {
@@ -48,20 +54,14 @@
 			session_unset();
 			session_destroy();
 
-			$this->go_to_auth();
 		}
 
-		public function verificar_sessao() {
-			if (!isset($_SESSION)) {
-				session_start();
-			}
-
-			if (!isset($_SESSION['codigoSessaoInvoice'])) {
-				$this->go_to_auth();
+		public function verificar_sessao(){
+			if (isset($_SESSION)) {
 				return false;
+			}else{
+				return true;
 			}
-
-			return true;
 		}
 
 		public function verificar_nivel($nivel) {
@@ -69,13 +69,11 @@
 				session_start();
 			}
 
-			if (!isset($_SESSION['nivelSessaoInvoice'])) {
-				$this->go_to_auth();
+			if (!isset($_SESSION['nivelSessaoZukaMeatPrime'])) {
 				return false;
 			}
 
-			if ($_SESSION['nivelSessaoInvoice'] < $nivel){
-				$this->go_to_index();
+			if ($_SESSION['nivelSessaoZukaMeatPrime'] < $nivel){
 				return false;
 			}
 
@@ -87,7 +85,7 @@
 				session_start();
 			}
 
-			if (isset($_SESSION['codigoSessaoInvoice'])) {
+			if (isset($_SESSION['codigoSessaoZukaMeatPrime'])) {
 				header('location: ../view/index.php');
 			}
 
@@ -95,10 +93,6 @@
 
 		private function go_to_index() {
 			header('location: ../view/index.php');
-		}
-
-		private function go_to_auth() {
-			header('location: ../view/login.php');
 		}
 	}
 

@@ -1,4 +1,5 @@
 <?php 
+require_once("../include/header.php");
 require_once("../db/bd_gerenciador.php");
 require_once("../model/cadastroDAO.php");
 require_once("../model/cadastroDTO.php");
@@ -9,14 +10,14 @@ require_once("../model/categoriaDTO.php");
 require_once("../model/produtoDAO.php");
 require_once("../model/produtoDTO.php");
 require_once("../include/functions.php"); 
-require_once("../include/sessions.php"); 
+// require_once("../include/sessions.php"); 
 require_once("../include/datetime.php"); 
 require_once("../include/links.html"); 
-
-require_once("../include/header.php");
+require_once("../controller/AutenticacaoController.php");
 ?>
 
 <?php
+
     $objCategoriaDao = new categoriaDAO();
     $lstCategorias = $objCategoriaDao->obter_todos_ativados();
 
@@ -24,7 +25,7 @@ require_once("../include/header.php");
     $lstProdutos = $objProdutoDao->obter_todos();
 
     $objCarrosselDao = new carrosselDAO();
-    $lstCarrossel = $objCarrosselDao->obter_todos();
+    // $lstCarrossel = $objCarrosselDao->obter_todos();
 ?>
     <!--Início Carrossel-->
     <header class="container">

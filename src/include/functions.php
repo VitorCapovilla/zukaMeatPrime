@@ -1,23 +1,12 @@
-<?php 
-
-/***************Redirecionar Para****************/
-function Redirect_to($New_Location){
-    header("Location:".$New_Location);
-    exit;
-}
-
-
-/***************Gerador de token****************/
-function token_gerador(){
-    $token = $_SESSION['token'] = md5(uniqid(mt_rand(), true));
-    return $token;
-}
-
-/***************Login Usuário****************/
-function login_user($email, $senha){
-
-    
-}
-
+<?php
+    function Redirect_to($New_location){
+        if (headers_sent()){
+            echo "<script>
+                window.location = '" . $New_location . "';
+            </script>";
+            exit();
+        }else{
+            exit(header('Location: ' . $New_location));
+        } 
+    }
 ?>
-

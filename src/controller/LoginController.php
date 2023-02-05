@@ -1,11 +1,11 @@
 <?php
     require_once("../controller/AutenticacaoController.php");
 
-    $user = $_POST["username"];
-    $pwd = $_POST["password"];
+    $user = $_POST["Email"];
+    $pwd = $_POST["Senha"];
 
     $login = new loginDTO();
-    $login->set_username($user);
+    $login->set_email($user);
     $login->set_password($pwd);
 
     $controller = new AutenticacaoController();

@@ -3,12 +3,14 @@
 	class sessionDTO {
 		private $codigo;
 		private $nivel;
-		private $username;
+		private $email;
+		private $nome;
 
-        public function __construct($codigo, $nivel, $username){
+        public function __construct($codigo, $nivel, $email, $nome){
             $this->codigo = $codigo;
             $this->nivel  = $nivel;
-			$this->username = $username;
+			$this->email = $email;
+			$this->nome = $nome;
         }
 
 		public function get_codigo() {
@@ -27,12 +29,20 @@
 			$this->nivel = $value;
 		}
 
-		public function set_username($value) {
-			$this->username = $value;
+		public function set_email($value) {
+			$this->email = $value;
 		}
 
-		public function get_username(){
-			return $this->username;
+		public function get_email(){
+			return $this->email;
+		}
+
+		public function set_nome($value){
+			$this->nome = $value;
+		}
+
+		public function get_nome(){
+			return $this->nome;
 		}
 	}
 

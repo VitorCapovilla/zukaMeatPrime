@@ -1,76 +1,141 @@
 <?php
     class cadastroDTO{
         private $codigo;
+        private $endereco;
+        private $contratado;
         private $nome;
         private $sobrenome;
-        private $datanasc;
-        private $cpf;
-        private $telefone;
+        private $usuario;
+        private $celular;
         private $email;
         private $senha;
+        private $nivel;
+        private $salario;
+        private $ativo;
+        private $data_contratacao;
+        private $data_nascimento;
+        private $data_cadastro;
 
-        function set_codigo($x){
+        public function set_codigo($x){
             $this->codigo = $x;
         }
 
-        function get_codigo(){
+        public function get_codigo(){
             return $this->codigo;
         }
 
-        function set_nome($x){
+        public function set_endereco($x){
+            $this->endereco = $x;
+        }
+
+        public function get_endereco(){
+            return $this->endereco;
+        }
+
+        public function set_contratado($x){
+            $this->contratado = $x;
+        }
+
+        public function get_contratado(){
+            return $this->contratado;
+        }
+
+        public function set_nome($x){
             $this->nome = $x;
         }
 
-        function get_nome(){
+        public function get_nome(){
             return $this->nome;
         }
 
-        function set_sobrenome($x){
-            $this->sobrenome=$x;
+        public function set_sobrenome($x){
+            $this->sobrenome = $x;
         }
 
-        function get_sobrenome(){
+        public function get_sobrenome(){
             return $this->sobrenome;
         }
 
-        function set_datanasc($x){
-            $this->datanasc = $x;
+        public function set_usuario($x){
+            $this->usuario = $x;
         }
 
-        function get_datanasc(){
-            return $this->datanasc;
+        public function get_usuario(){
+            return $this->usuario;
         }
 
-        function set_cpf($x){
-            $this->cpf=$x;
+        public function set_celular($x){
+            $this->celular = $x;
         }
 
-        function get_cpf(){
-            return $this->cpf;
+        public function get_celular(){
+            return $this->celular;
         }
 
-        function set_telefone($x){
-            $this->telefone = $x;
-        }
-
-        function get_telefone(){
-            return $this->telefone;
-        }
-
-        function set_email($x){
+        public function set_email($x){
             $this->email = $x;
         }
 
-        function get_email(){
+        public function get_email(){
             return $this->email;
         }
 
-        function set_senha($x){
-            $this->senha=$x;
+        public function set_senha($x){
+            $this->senha = $x;
         }
-        
-        function get_senha(){
+
+        public function get_senha(){
             return $this->senha;
         }
+
+        public function set_nivel($x){
+            $this->nivel = $x;
+        }
+
+        public function get_nivel(){
+            return $this->nivel;
+        }
+
+        public function set_salario($x){
+            $this->salario = $x;
+        }
+
+        public function get_salario(){
+            return $this->salario;
+        }
+
+        public function set_ativo($x){
+            $this->ativo = $x;
+        }
+
+        public function get_ativo(){
+            return $this->ativo;
+        }
+
+        public function set_data_contratacao($x){
+            $this->data_contratacao = $x;
+        }
+
+        public function get_data_contratacao(){
+            return $this->data_contratacao;
+        }
+
+        public function set_data_nascimento($x){
+            $this->data_nascimento = $x;
+        }
+
+        public function get_data_nascimento(){
+            return $this->data_nascimento;
+        }
+
+        public function set_data_cadastro($x){
+            $this->data_cadastro = $x;
+        }
+
+        public function get_data_cadastro(){
+            return $this->data_cadastro;
+        }
+
+
     }
 ?>
