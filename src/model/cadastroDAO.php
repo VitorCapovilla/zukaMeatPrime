@@ -2,7 +2,7 @@
     require_once('cadastroDTO.php');
     require_once('../db/bd_gerenciador.php');
 
-    class cadastroDAO{
+    class CadastroDAO{
         private $con;
 
         public function __construct(){
@@ -58,7 +58,7 @@
             $clientes = [];
 
             while($linha = $meu_resultado->fetch(PDO::FETCH_ASSOC)){
-                $objcliente = new Cliente();
+                $objcliente = new CadastroDTO();
                 $objcliente->set_codigo($linha['codigo']);
                 $objcliente->set_nome($linha['nome']);
                 $objcliente->set_sobrenome($linha['sobrenome']);
@@ -74,11 +74,11 @@
             return $clientes;
         }
 
-        function obter($codigo){
+        public function obter($codigo){
             $meu_comando =$this->con->query("SELECT codigo, nome, sobrenome, datanascimento, cpf, telefone, email, senha FROM cliente WHERE (codigo = " . $codigo . ");");
             $linha = $meu_comando->fetch(PDO::FETCH_ASSOC);
     
-            $c = new Cliente();
+            $c = new CadastroDTO();
             $c->set_codigo($linha['codigo']);
             $c->set_nome($linha['nome']);
             $c->set_sobrenome($linha['sobrenome']);

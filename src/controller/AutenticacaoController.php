@@ -54,6 +54,8 @@
 			session_unset();
 			session_destroy();
 
+			go_to_index();
+
 		}
 
 		public function verificar_sessao(){
@@ -62,22 +64,6 @@
 			}else{
 				return true;
 			}
-		}
-
-		public function verificar_nivel($nivel) {
-			if (!isset($_SESSION)) {
-				session_start();
-			}
-
-			if (!isset($_SESSION['nivelSessaoZukaMeatPrime'])) {
-				return false;
-			}
-
-			if ($_SESSION['nivelSessaoZukaMeatPrime'] < $nivel){
-				return false;
-			}
-
-			return true;
 		}
 
 		public function verificar_login() {
@@ -92,7 +78,7 @@
 		}
 
 		private function go_to_index() {
-			header('location: ../view/index.php');
+			header('location: ../view/');
 		}
 	}
 

@@ -1,5 +1,5 @@
 <?php
-    class cadastroDTO{
+    class CadastroDTO{
         private $codigo;
         private $endereco;
         private $contratado;

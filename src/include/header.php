@@ -3,7 +3,8 @@ require_once("../controller/AutenticacaoController.php");
 require_once("links.html"); 
 
     error_reporting(E_ERROR | E_PARSE);
-
+    date_default_timezone_set("America/Sao_Paulo");
+    
     session_start();
 
     $auth = new AutenticacaoController();
@@ -12,7 +13,6 @@ require_once("links.html");
 
         if (isset($_POST['btn-logout'])) {
             $auth->ecerrar_sessao();
-            header("Refresh: 0; url=../");
         }
     }else{
         $auth->nao_logado(0);

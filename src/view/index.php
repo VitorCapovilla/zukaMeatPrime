@@ -1,30 +1,25 @@
 <?php 
-require_once("../include/header.php");
-require_once("../db/bd_gerenciador.php");
-require_once("../model/cadastroDAO.php");
-require_once("../model/cadastroDTO.php");
-require_once("../model/carrosselDAO.php");
-require_once("../model/carrosselDTO.php");
-require_once("../model/categoriaDAO.php");
-require_once("../model/categoriaDTO.php");
-require_once("../model/produtoDAO.php");
-require_once("../model/produtoDTO.php");
-require_once("../include/functions.php"); 
-// require_once("../include/sessions.php"); 
-require_once("../include/datetime.php"); 
-require_once("../include/links.html"); 
-require_once("../controller/AutenticacaoController.php");
-?>
+    require_once("../include/header.php");
+    require_once("../db/bd_gerenciador.php");
+    require_once("../model/cadastroDAO.php");
+    require_once("../model/cadastroDTO.php");
+    require_once("../model/carrosselDAO.php");
+    require_once("../model/carrosselDTO.php");
+    require_once("../model/categoriaDAO.php");
+    require_once("../model/categoriaDTO.php");
+    require_once("../model/produtoDAO.php");
+    require_once("../model/produtoDTO.php");
+    require_once("../include/functions.php"); 
+    require_once("../include/datetime.php"); 
+    require_once("../include/links.html"); 
 
-<?php
+    // $objCategoriaDAO = new CategoriaDAO();
+    // $lstCategorias = $objCategoriaDao->obter_todos_ativados();
 
-    $objCategoriaDao = new categoriaDAO();
-    $lstCategorias = $objCategoriaDao->obter_todos_ativados();
+    // $objProdutoDao = new produtoDAO();
+    // $lstProdutos = $objProdutoDao->obter_todos();
 
-    $objProdutoDao = new produtoDAO();
-    $lstProdutos = $objProdutoDao->obter_todos();
-
-    $objCarrosselDao = new carrosselDAO();
+    // $objCarrosselDao = new carrosselDAO();
     // $lstCarrossel = $objCarrosselDao->obter_todos();
 ?>
     <!--Início Carrossel-->
